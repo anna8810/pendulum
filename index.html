@@ -10,6 +10,7 @@
 		<script src="Preloader.js"></script>
 		<script src="StartMenu.js"></script>
 		<script src="Game.js"></script>
+		<script src="Level1.js"></script>
 
 		<style>
 			body {
@@ -31,6 +32,7 @@
 				game.state.add("Preloader", Pendulum.Preloader);
 				game.state.add("StartMenu", Pendulum.StartMenu);
 				game.state.add("Game", Pendulum.Game);
+				game.state.add("Level1", Pendulum.Level1);
 
 				game.state.start("Boot");
 			}

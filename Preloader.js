@@ -11,8 +11,6 @@ Pendulum.Preloader.prototype = {
 		this.preloadBar = this.add.sprite(this.world.centerX, this.world.centerY, "preloadBar");
 		this.preloadBar.anchor.setTo(0.5, 0.5);
 		this.load.setPreloadSprite(this.preloadBar);
-		//this.titleText = this.add.image(this.world.centerX, this.world.centerY-220, "titleimage");
-		//this.titleText.anchor.setTo(0.5, 0.5);
 
 		// Load image and text for startscreen
 		this.load.image("startScreen", "images/startBG.jpg");
@@ -22,7 +20,7 @@ Pendulum.Preloader.prototype = {
 		this.load.image("gameBG", "images/nebula-blue.jpg");
 		this.load.image("center", "images/ball-purple.png");
 		this.load.image("end", "images/ball-purple.png");
-
+		this.load.image("rectangle", "images/rectangle.png");
 	},
 
 	create: function() {
@@ -33,9 +31,9 @@ Pendulum.Preloader.prototype = {
 		this.ready = true;
 
 		// Start the start menu
-		this.state.start("StartMenu");
+		//this.state.start("StartMenu");
 
 		// Shortcut direct to game!
-		//this.state.start("Game");
+		this.state.start("Game");
 	}
 }

@@ -1,12 +1,11 @@
 var Pendulum = {};
 
-Pendulum.Boot = function(game) {};
+Pendulum.Boot = function() {};
 
 Pendulum.Boot.prototype = {
 
 	preload: function() {
 		this.load.image("preloadBar", "images/loadBar.png");
-		this.load.image("titleimage", "images/TitleImage.png");
 	},
 
 	create: function() {

@@ -4,20 +4,20 @@ Pendulum.Game.prototype = {
 
 	create: function() {
 
-		this.speed = 1; 
+		// Physics
+		this.physics.startSystem(Phaser.Physics.ARCADE);
+
+		this.speed = 2; 
 		this.buildWorld();
 		this.buildPath();
 		this.buildPendulum();
+		this.buildObstacles();
 	},
 
 	buildWorld: function() {
 
-		//this.add.image(0,0, "gameBG");
-
 		// Backgorund as tileSprite to have continuously moving background
-		BG = this.add.tileSprite(0, 0, 1024, 600, "gameBG");
-
-		
+		BG = this.add.tileSprite(0, 0, 1024, 600, "gameBG");	
 	},
 
 	buildPath: function() {
@@ -44,7 +44,7 @@ Pendulum.Game.prototype = {
 
 		// Add center and end to pendulum
 		pendulum.create(this.world.width/2-8, this.world.height/2, "center");
-		pendulum.create(this.world.width/2-8, this.world.height/2+100, "end");
+		end = pendulum.create(this.world.width/2-8, this.world.height/2+100, "end");
 
 		//  Enable physics on the player
 		this.physics.arcade.enable(pendulum);
@@ -52,11 +52,42 @@ Pendulum.Game.prototype = {
 		//  Our controls
 		cursors = this.input.keyboard.createCursorKeys();
 
+		this.physics.arcade.enable(end);
+		end.enableBody = true;
+	},
+
+	buildObstacles: function() {
+		obstaclesTotal = 5;
+		obstacles = this.add.group();
+		obstacles.x = this.world.width/2;
+
+		left = true; 
+
+		for(var i=0; i<obstaclesTotal; ++i) {
+			// DEBUGGING
+			//console.log(i);
+			//console.log(i)
+
+			if(left) {
+				obstacles.create(-231, -200*i, "rectangle");
+				left = false;
+			}
+			else {
+				obstacles.create(0, -200*i, "rectangle");
+				left = true;
+			}
+
+			this.physics.arcade.enable(obstacles);
+			obstacles.enableBody = true;
+		};
 	},
 
 	update: function() {
 
 		BG.tilePosition.y += this.speed;
+		obstacles.y += this.speed;
+
+		this.physics.arcade.collide(pendulum, obstacles, this.test); 
 
 		// Moving the end of the pendulum (player)
 		if (cursors.left.isDown) {
@@ -74,7 +105,10 @@ Pendulum.Game.prototype = {
 			// Stand still
 			//player.animations.stop();
 		}
-
 	}
 
+	, 
+	test: function() {
+		console.log("HIT");
+	}
 }

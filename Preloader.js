@@ -31,9 +31,9 @@ Pendulum.Preloader.prototype = {
 		this.ready = true;
 
 		// Start the start menu
-		//this.state.start("StartMenu");
+		this.state.start("StartMenu");
 
 		// Shortcut direct to game!
-		this.state.start("Game");
+		//this.state.start("Game");
 	}
 }

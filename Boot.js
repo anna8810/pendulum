@@ -5,6 +5,8 @@ Pendulum.Boot = function() {};
 Pendulum.Boot.prototype = {
 
 	preload: function() {
+
+		// Loading bar - just for fun!
 		this.load.image("preloadBar", "images/loadBar.png");
 	},
 

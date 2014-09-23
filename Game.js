@@ -8,10 +8,6 @@ Pendulum.Game.prototype = {
 
 	create: function() {
 
-		// Physics
-		//this.physics.startSystem(Phaser.Physics.ARCADE);
-
-		
 		this.buildWorld();
 		this.buildPath();
 		this.buildPendulum();
@@ -19,19 +15,21 @@ Pendulum.Game.prototype = {
 	},
 
 	buildWorld: function() {
-
+		// Debugging
 		console.log("Game.buildWorld");
+
 		// Backgorund as tileSprite to have continuously moving background
 		BG = this.add.tileSprite(0, 0, 1024, 600, "gameBG");	
 
+		// Sets speed of game
 		this.speed = 2; 
 	},
 
 	buildPath: function() {
-		// Add graohics to the game
+		// Add graphics to the game
 		graphics = this.add.graphics(0, 0);
 
-		// Create stright path
+		// Create straight path
 		graphics.lineStyle(11, 0x808080, 0.5);
 		graphics.moveTo(this.world.width/2,0);
 		graphics.lineTo(this.world.width/2, 600);
@@ -102,8 +100,7 @@ Pendulum.Game.prototype = {
 		BG.tilePosition.y += this.speed;
 		obstacles.y += this.speed;
 
-		//this.physics.arcade.collide(pendulum, obstacles, this.test); 
-		//this.physics.arcade.collide(this.end, obstacles, this.test(), null, this);  
+		// Checks collison using overlap since the objects doesnt need to be seperated
 		this.physics.arcade.overlap(end, obstacles, this.die, null, this);
 
 		// Moving the end of the pendulum (player)

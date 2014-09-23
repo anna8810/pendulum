@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		
 		<title> Pendulum </title>
-		
+
 		<script src="libs/phaser.js"></script>
 		<script src="Boot.js"></script>
 		<script src="Preloader.js"></script>
@@ -28,12 +28,14 @@
 			window.onload = function() {
 				var game = new Phaser.Game(1024, 600, Phaser.AUTO, "gameContainer");
 
+				// Add states to be called later
 				game.state.add("Boot", Pendulum.Boot);
 				game.state.add("Preloader", Pendulum.Preloader);
 				game.state.add("StartMenu", Pendulum.StartMenu);
 				game.state.add("Game", Pendulum.Game);
 				game.state.add("Level1", Pendulum.Level1);
 
+				// Booting game!
 				game.state.start("Boot");
 			}
 		</script>

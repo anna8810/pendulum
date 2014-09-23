@@ -1,13 +1,17 @@
-Pendulum.Game = function(game) {};
+Pendulum.Game = function() {
+	var speed;
+	var pendulum;
+	var obstacles;
+};
 
 Pendulum.Game.prototype = {
 
 	create: function() {
 
 		// Physics
-		this.physics.startSystem(Phaser.Physics.ARCADE);
+		//this.physics.startSystem(Phaser.Physics.ARCADE);
 
-		this.speed = 2; 
+		
 		this.buildWorld();
 		this.buildPath();
 		this.buildPendulum();
@@ -16,8 +20,11 @@ Pendulum.Game.prototype = {
 
 	buildWorld: function() {
 
+		console.log("Game.buildWorld");
 		// Backgorund as tileSprite to have continuously moving background
 		BG = this.add.tileSprite(0, 0, 1024, 600, "gameBG");	
+
+		this.speed = 2; 
 	},
 
 	buildPath: function() {
@@ -52,16 +59,23 @@ Pendulum.Game.prototype = {
 		//  Our controls
 		cursors = this.input.keyboard.createCursorKeys();
 
-		this.physics.arcade.enable(end);
-		end.enableBody = true;
+		this.physics.enable(end, Phaser.Physics.ARCADE);
+		//this.physics.arcade.enable(end);
+		//end.enableBody = true;
 	},
 
 	buildObstacles: function() {
 		obstaclesTotal = 5;
+
 		obstacles = this.add.group();
+		obstacles.enableBody = true;
+		obstacles.physicsBodyType = Phaser.Physics.ARCADE;
+
 		obstacles.x = this.world.width/2;
 
 		left = true; 
+
+		var o;
 
 		for(var i=0; i<obstaclesTotal; ++i) {
 			// DEBUGGING
@@ -69,16 +83,17 @@ Pendulum.Game.prototype = {
 			//console.log(i)
 
 			if(left) {
-				obstacles.create(-231, -200*i, "rectangle");
+				o = obstacles.create(-231, -200*i, "rectangle");
+				o.body.bounce.set(1);
+            	o.body.immovable = true;
 				left = false;
 			}
 			else {
-				obstacles.create(0, -200*i, "rectangle");
+				o = obstacles.create(0, -200*i, "rectangle");
+				o.body.bounce.set(1);
+            	o.body.immovable = true;
 				left = true;
 			}
-
-			this.physics.arcade.enable(obstacles);
-			obstacles.enableBody = true;
 		};
 	},
 
@@ -87,7 +102,9 @@ Pendulum.Game.prototype = {
 		BG.tilePosition.y += this.speed;
 		obstacles.y += this.speed;
 
-		this.physics.arcade.collide(pendulum, obstacles, this.test); 
+		//this.physics.arcade.collide(pendulum, obstacles, this.test); 
+		//this.physics.arcade.collide(this.end, obstacles, this.test(), null, this);  
+		this.physics.arcade.overlap(end, obstacles, this.die, null, this);
 
 		// Moving the end of the pendulum (player)
 		if (cursors.left.isDown) {
@@ -104,11 +121,12 @@ Pendulum.Game.prototype = {
 
 			// Stand still
 			//player.animations.stop();
-		}
-	}
 
-	, 
-	test: function() {
+		}
+	}, 
+
+	die: function() {
 		console.log("HIT");
+		this.state.start("StartMenu");
 	}
 }

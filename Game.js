@@ -50,22 +50,24 @@ Pendulum.Game.prototype = {
 		// Add center and end to pendulum
 		pendulum.create(this.world.width/2-8, this.world.height/2, "center");
 		end = pendulum.create(this.world.width/2-8, this.world.height/2+100, "end");
+		// Enable physics for collsion to work
+		this.physics.enable(end, Phaser.Physics.ARCADE);
 
 		//  Enable physics on the player
-		this.physics.arcade.enable(pendulum);
+		//this.physics.arcade.enable(pendulum);
 		
 		//  Our controls
-		cursors = this.input.keyboard.createCursorKeys();
-
-		this.physics.enable(end, Phaser.Physics.ARCADE);
-		//this.physics.arcade.enable(end);
-		//end.enableBody = true;
+		cursors = this.input.keyboard.createCursorKeys();	
 	},
 
 	buildObstacles: function() {
 		obstaclesTotal = 5;
 
+		// Create obstacle group
 		obstacles = this.add.group();
+		obstacles.checkWorldBounds = true;
+
+		// Add physics for collision
 		obstacles.enableBody = true;
 		obstacles.physicsBodyType = Phaser.Physics.ARCADE;
 
@@ -81,15 +83,11 @@ Pendulum.Game.prototype = {
 			//console.log(i)
 
 			if(left) {
-				o = obstacles.create(-231, -200*i, "rectangle");
-				o.body.bounce.set(1);
-            	o.body.immovable = true;
+				obstacles.create(-231, -200*i, "rectangle");
 				left = false;
 			}
 			else {
-				o = obstacles.create(0, -200*i, "rectangle");
-				o.body.bounce.set(1);
-            	o.body.immovable = true;
+				obstacles.create(0, -200*i, "rectangle");
 				left = true;
 			}
 		};
@@ -124,6 +122,6 @@ Pendulum.Game.prototype = {
 
 	die: function() {
 		console.log("HIT");
-		this.state.start("StartMenu");
+		this.state.start("GameOver");
 	}
 }

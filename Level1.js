@@ -1,43 +1,39 @@
-Pendulum.Level1 = function() {
+Pendulum.Level1 = function(game) {
 	var speed;
 };
 
-Pendulum.Level1.prototype = new Pendulum.Game();
+Pendulum.Level1.prototype = Object.create(Pendulum.Game.prototype);
+Pendulum.Level1.prototype.constructor = Pendulum.Level1;
 
 Pendulum.Level1.prototype.buildWorld = function() {
 
 	// Backgorund as tileSprite to have continuously moving background
-	BG = this.add.tileSprite(0, 0, 1024, 600, "gameBG");	
+	BG = this.add.tileSprite(0, 0, 1024, 600, "Level1BG");	
+
+	// Debugging
 	console.log("Level1.buildWorld");
 
-	//this.speed = 5; 
+	this.speed = 2; 
 };
 
+// Phaser needs this reaaly bad. Dont know why. Stupid Phaser...
+Pendulum.Level1.prototype.render = function() {};
 
-Pendulum.Level1.prototype.update = function() {
 
-		BG.tilePosition.y += this.speed;
-		obstacles.y += this.speed;
+/* VARFÖR KAN JAG INTE SKRIVA SÅHÄÄÄR?
+Pendulum.Level1.prototype = {
 
-		//this.physics.arcade.collide(pendulum, obstacles, this.test); 
-		//this.physics.arcade.collide(this.end, obstacles, this.test(), null, this);  
-		this.physics.arcade.collide(end, obstacles, this.die, null, this);
+	buildWorld: function() {
 
-		// Moving the end of the pendulum (player)
-		if (cursors.left.isDown) {
+		// Backgorund as tileSprite to have continuously moving background
+		BG = this.add.tileSprite(0, 0, 1024, 600, "gameBG");	
 
-			// Rotate pendlum clockwise
-			pendulum.rotation += 0.05;
-		}
-		else if (cursors.right.isDown) {
+		console.log("Leve1.buildWorld");
 
-			// Rotate pendulum counter clockwise
-			pendulum.rotation -= 0.05;
-		}
-		else {
+		this.speed = 5;
 
-			// Stand still
-			//player.animations.stop();
+	}, 
 
-		}
-	};
+	preload: function() {}
+}
+*/

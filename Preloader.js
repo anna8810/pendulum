@@ -17,10 +17,20 @@ Pendulum.Preloader.prototype = {
 		this.load.bitmapFont("eightbitwonder", "fonts/eightbitwonder.png", "fonts/eightbitwonder.fnt");
 
 		// Load images for the game
-		this.load.image("gameBG", "images/nebula-blue.jpg");
 		this.load.image("center", "images/ball-purple.png");
 		this.load.image("end", "images/ball-purple.png");
 		this.load.image("rectangle", "images/rectangle.png");
+
+		// Load images for Level1
+		this.load.image("Level1BG", "images/nebula-blue.jpg");
+
+		// Load images for Level2
+		this.load.image("Level2BG", "images/nebula-green.jpg");		
+
+		// Load images for Level3
+		this.load.image("Level3BG", "images/nebula-red.jpg");
+
+		// Load images for Level4
 	},
 
 	create: function() {
@@ -31,9 +41,11 @@ Pendulum.Preloader.prototype = {
 		this.ready = true;
 
 		// Start the start menu
-		this.state.start("StartMenu");
+		//this.state.start("StartMenu");
 
-		// Shortcut direct to game!
-		//this.state.start("Game");
+		// Shortcuts! 
+		this.state.start("Level1");
+		//this.state.start("GameOver");
+
 	}
 }

@@ -10,7 +10,10 @@
 		<script src="Preloader.js"></script>
 		<script src="StartMenu.js"></script>
 		<script src="Game.js"></script>
+		<script src="GameOver.js"></script>
+		<script src="GameWon.js"></script>
 		<script src="Level1.js"></script>
+		<script src="Level2.js"></script>
 
 		<style>
 			body {
@@ -33,7 +36,10 @@
 				game.state.add("Preloader", Pendulum.Preloader);
 				game.state.add("StartMenu", Pendulum.StartMenu);
 				game.state.add("Game", Pendulum.Game);
+				game.state.add("GameOver", Pendulum.GameOver);
+				game.state.add("GameWon", Pendulum.GameWon);
 				game.state.add("Level1", Pendulum.Level1);
+				game.state.add("Level2", Pendulum.Level2);
 
 				// Booting game!
 				game.state.start("Boot");

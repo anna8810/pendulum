@@ -20,6 +20,8 @@ Pendulum.Preloader.prototype = {
 		this.load.image("center", "images/ball-purple.png");
 		this.load.image("end", "images/ball-purple.png");
 		this.load.image("rectangle", "images/rectangle.png");
+		this.load.image("left", "images/left.png");
+		this.load.image("right", "images/right.png");
 
 		// Load images for Level1
 		this.load.image("Level1BG", "images/nebula-blue.jpg");

@@ -5,7 +5,8 @@ Pendulum.Level1 = function(game) {
 Pendulum.Level1.prototype = Object.create(Pendulum.Game.prototype);
 Pendulum.Level1.prototype.constructor = Pendulum.Level1;
 
-Pendulum.Level1.prototype.buildWorld = function() {
+
+Pendulum.Level1.prototype.buildLevel = function() {
 
 	// Backgorund as tileSprite to have continuously moving background
 	BG = this.add.tileSprite(0, 0, 1024, 600, "Level1BG");	

@@ -19,11 +19,20 @@ Pendulum.Game.prototype = {
 		console.log("Game.buildWorld");
 
 		// Backgorund as tileSprite to have continuously moving background
-		BG = this.add.tileSprite(0, 0, 1024, 600, "gameBG");	
+		BG = this.add.tileSprite(0, 0, 1024, 600, "Level2BG");	
+
+		buttonLeft = this.add.button(0, this.world.height - 96, 'left', this.actionOnClick, this, 2, 1, 0);
+		buttonRight = this.add.button(this.world.width - 96, this.world.height - 96, 'right', this.actionOnClick, this, 2, 1, 0);
 
 		// Sets speed of game
 		this.speed = 2; 
 	},
+
+	actionOnClick: function() {
+
+    console.log("Button clicked!");
+
+},
 
 	buildPath: function() {
 		// Add graphics to the game

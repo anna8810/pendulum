@@ -20,8 +20,8 @@ Pendulum.Preloader.prototype = {
 		this.load.image("center", "images/ball-purple.png");
 		this.load.image("end", "images/ball-purple.png");
 		this.load.image("rectangle", "images/rectangle.png");
-		this.load.image("left", "images/left.png");
-		this.load.image("right", "images/right.png");
+		this.load.image("left", "images/left_hand_96.png");
+		this.load.image("right", "images/right_hand_96.png");
 
 		// Load images for Level1
 		this.load.image("Level1BG", "images/nebula-blue.jpg");
@@ -43,10 +43,10 @@ Pendulum.Preloader.prototype = {
 		this.ready = true;
 
 		// Start the start menu
-		//this.state.start("StartMenu");
+		this.state.start("StartMenu");
 
 		// Shortcuts! 
-		this.state.start("Level1");
+		//this.state.start("Level1");
 		//this.state.start("GameOver");
 
 	}

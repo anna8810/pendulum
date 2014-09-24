@@ -2,6 +2,10 @@ Pendulum.Game = function() {
 	var speed;
 	var pendulum;
 	var obstacles;
+	var buttonLeft;
+	var buttonRight;
+	var movingLeft = false;
+	var movingRight = false;
 };
 
 Pendulum.Game.prototype = {
@@ -16,23 +20,35 @@ Pendulum.Game.prototype = {
 
 	buildWorld: function() {
 		// Debugging
-		console.log("Game.buildWorld");
+		//console.log("Game.buildWorld");
 
-		// Backgorund as tileSprite to have continuously moving background
-		BG = this.add.tileSprite(0, 0, 1024, 600, "Level2BG");	
+		// Run child function to set background and speed
+		this.buildLevel();
 
-		buttonLeft = this.add.button(0, this.world.height - 96, 'left', this.actionOnClick, this, 2, 1, 0);
-		buttonRight = this.add.button(this.world.width - 96, this.world.height - 96, 'right', this.actionOnClick, this, 2, 1, 0);
+		//  Our controls
+		cursors = this.input.keyboard.createCursorKeys();
 
-		// Sets speed of game
-		this.speed = 2; 
+		buttonLeft = this.add.sprite(0, this.world.height - 96, 'left');
+		buttonLeft.inputEnabled = true;
+		buttonLeft.input.pointerOver.id = 1;
+
+		buttonRight = this.add.sprite(this.world.width - 96, this.world.height - 96, 'right');
+		buttonRight.inputEnabled = true;
+		buttonRight.input.pointerOver.id = 1;
+
+		this.input.onDown.add(this.activeInput, this);
+		this.input.onUp.add(this.releaseInput, this);
 	},
 
-	actionOnClick: function() {
+	activeInput: function() {
+		this.inputActive = true;
+	},
 
-    console.log("Button clicked!");
+	releaseInput: function() {
+		this.inputActive = false;
+	},
 
-},
+
 
 	buildPath: function() {
 		// Add graphics to the game
@@ -60,13 +76,7 @@ Pendulum.Game.prototype = {
 		pendulum.create(this.world.width/2-8, this.world.height/2, "center");
 		end = pendulum.create(this.world.width/2-8, this.world.height/2+100, "end");
 		// Enable physics for collsion to work
-		this.physics.enable(end, Phaser.Physics.ARCADE);
-
-		//  Enable physics on the player
-		//this.physics.arcade.enable(pendulum);
-		
-		//  Our controls
-		cursors = this.input.keyboard.createCursorKeys();	
+		this.physics.enable(end, Phaser.Physics.ARCADE);	
 	},
 
 	buildObstacles: function() {
@@ -111,12 +121,12 @@ Pendulum.Game.prototype = {
 		this.physics.arcade.overlap(end, obstacles, this.die, null, this);
 
 		// Moving the end of the pendulum (player)
-		if (cursors.left.isDown) {
+		if (cursors.left.isDown || buttonLeft.input.pointerOver() && (this.inputActive)) {
 
 			// Rotate pendlum clockwise
 			pendulum.rotation += 0.05;
 		}
-		else if (cursors.right.isDown) {
+		else if (cursors.right.isDown || buttonRight.input.pointerOver() && (this.inputActive)) {
 
 			// Rotate pendulum counter clockwise
 			pendulum.rotation -= 0.05;
@@ -130,7 +140,10 @@ Pendulum.Game.prototype = {
 	}, 
 
 	die: function() {
-		console.log("HIT");
+		// Debugging
+		//console.log("HIT");
+		
+		// Go to Game Over state
 		this.state.start("GameOver");
 	}
 }

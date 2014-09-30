@@ -2,6 +2,7 @@ Pendulum.Game = function() {
 	var speed;
 	var pendulum;
 	var obstacles;
+	var o;
 	var buttonLeft;
 	var buttonRight;
 	var movingLeft = false;
@@ -86,6 +87,7 @@ Pendulum.Game.prototype = {
 		obstacles = this.add.group();
 		obstacles.checkWorldBounds = true;
 
+
 		// Add physics for collision
 		obstacles.enableBody = true;
 		obstacles.physicsBodyType = Phaser.Physics.ARCADE;
@@ -139,11 +141,25 @@ Pendulum.Game.prototype = {
 		}
 	}, 
 
+	// Called when pendulum hits obstacle
 	die: function() {
 		// Debugging
-		console.log("HIT");
-		
+		//console.log("HIT");
 		// Go to Game Over state
 		this.state.start("GameOver");
+	},
+
+	// Called when all obstacles are passed
+	obstaclePassed: function() {
+	obstaclePassed++;
+
+	//console.log(obstaclePassed);
+		// Uglyhack
+		if(obstaclePassed == obstaclesTotal)
+		{
+			//console.log("WINNING");
+			// Go to Game Won state
+			this.state.start("GameWon");
+		}
 	}
 }

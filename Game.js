@@ -48,8 +48,6 @@ Pendulum.Game.prototype = {
 		this.inputActive = false;
 	},
 
-
-
 	buildPath: function() {
 		// Add graphics to the game
 		graphics = this.add.graphics(0, 0);
@@ -73,12 +71,14 @@ Pendulum.Game.prototype = {
 		pendulum.pivot.y = this.world.height/2;
 
 		// Add center and end to pendulum
-		pendulum.create(this.world.width/2-8, this.world.height/2, "center");
-		end = pendulum.create(this.world.width/2-8, this.world.height/2+100, "end");
+		center = pendulum.create(this.world.width/2, this.world.height/2, "center");
+		center.anchor.setTo(0.5, 0.5);
+		end = pendulum.create(this.world.width/2, this.world.height/2+100, "end");
+		end.anchor.setTo(0.5, 0.5);
 		// Enable physics for collsion to work
 		this.physics.enable(end, Phaser.Physics.ARCADE);	
 	},
-
+/*
 	buildObstacles: function() {
 		obstaclesTotal = 5;
 
@@ -111,7 +111,7 @@ Pendulum.Game.prototype = {
 			}
 		};
 	},
-
+*/
 	update: function() {
 
 		BG.tilePosition.y += this.speed;
@@ -141,7 +141,7 @@ Pendulum.Game.prototype = {
 
 	die: function() {
 		// Debugging
-		//console.log("HIT");
+		console.log("HIT");
 		
 		// Go to Game Over state
 		this.state.start("GameOver");

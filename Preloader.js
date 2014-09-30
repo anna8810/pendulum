@@ -20,8 +20,12 @@ Pendulum.Preloader.prototype = {
 		this.load.image("center", "images/ball-purple.png");
 		this.load.image("end", "images/ball-purple.png");
 		this.load.image("rectangle", "images/rectangle.png");
-		this.load.image("left", "images/left_hand_96.png");
-		this.load.image("right", "images/right_hand_96.png");
+		this.load.image("left", "images/left.png");
+		this.load.image("right", "images/right.png");
+
+		// Load images for game over
+		this.load.image("restart", "images/restart.png");
+		this.load.image("menu", "images/menu.png");
 
 		// Load images for Level1
 		this.load.image("Level1BG", "images/nebula-blue.jpg");
@@ -29,7 +33,7 @@ Pendulum.Preloader.prototype = {
 		// Load images for Level2
 		this.load.image("Level2BG", "images/nebula-green.jpg");		
 
-		// Load images for Level3
+		// Load images for Level3i
 		this.load.image("Level3BG", "images/nebula-red.jpg");
 
 		// Load images for Level4

@@ -18,7 +18,7 @@ Pendulum.Level2.prototype.buildLevel = function() {
 	// Debugging
 	console.log("Level2.buildWorld");
 
-	this.speed = 2; 
+	this.speed = 5; 
 }
 
 Pendulum.Level2.prototype.buildObstacles = function(obstacles) {

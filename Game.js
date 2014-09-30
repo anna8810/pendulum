@@ -7,6 +7,7 @@ Pendulum.Game = function() {
 	var buttonRight;
 	var movingLeft = false;
 	var movingRight = false;
+	var level;
 };
 
 Pendulum.Game.prototype = {
@@ -16,7 +17,7 @@ Pendulum.Game.prototype = {
 		this.buildWorld();
 		this.buildPath();
 		this.buildPendulum();
-		this.buildObstacles();
+		this.buildObstacleGroup();
 	},
 
 	buildWorld: function() {
@@ -54,7 +55,7 @@ Pendulum.Game.prototype = {
 		graphics = this.add.graphics(0, 0);
 
 		// Create straight path
-		graphics.lineStyle(11, 0x808080, 0.5);
+		graphics.lineStyle(10, 0x808080, 0.5);
 		graphics.moveTo(this.world.width/2,0);
 		graphics.lineTo(this.world.width/2, 600);
 	},
@@ -79,41 +80,24 @@ Pendulum.Game.prototype = {
 		// Enable physics for collsion to work
 		this.physics.enable(end, Phaser.Physics.ARCADE);	
 	},
-/*
-	buildObstacles: function() {
-		obstaclesTotal = 5;
+
+	buildObstacleGroup: function() {
 
 		// Create obstacle group
 		obstacles = this.add.group();
-		obstacles.checkWorldBounds = true;
-
-
-		// Add physics for collision
 		obstacles.enableBody = true;
-		obstacles.physicsBodyType = Phaser.Physics.ARCADE;
-
 		obstacles.x = this.world.width/2;
 
-		left = true; 
-
-		var o;
-
-		for(var i=0; i<obstaclesTotal; ++i) {
-			// DEBUGGING
-			//console.log(i);
-			//console.log(i)
-
-			if(left) {
-				obstacles.create(-231, -200*i, "rectangle");
-				left = false;
-			}
-			else {
-				obstacles.create(0, -200*i, "rectangle");
-				left = true;
-			}
-		};
+		// Create obstacles in each level
+		this.buildObstacles(obstacles);
 	},
+
+/*
+	buildOrbGroup: function() {
+	
+	}
 */
+
 	update: function() {
 
 		BG.tilePosition.y += this.speed;
@@ -145,21 +129,24 @@ Pendulum.Game.prototype = {
 	die: function() {
 		// Debugging
 		//console.log("HIT");
+		customParam1 = 1;
+		customParam2 = 2;
 		// Go to Game Over state
-		this.state.start("GameOver");
+		this.state.start("GameOver",true, false, level);
 	},
 
 	// Called when all obstacles are passed
 	obstaclePassed: function() {
-	obstaclePassed++;
+		obstaclePassed++;
 
-	//console.log(obstaclePassed);
 		// Uglyhack
 		if(obstaclePassed == obstaclesTotal)
 		{
+			// Debugging
 			//console.log("WINNING");
+
 			// Go to Game Won state
-			this.state.start("GameWon");
+			this.state.start("GameWon",true, false, level);
 		}
 	}
 }

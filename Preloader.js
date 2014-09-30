@@ -28,7 +28,7 @@ Pendulum.Preloader.prototype = {
 		this.load.image("menu", "images/menu.png");
 
 		// Load images for Level1
-		this.load.image("Level1BG", "images/nebula-blue.jpg");
+		this.load.image("Level1BG", "images/nebula-blue1.jpg");
 
 		// Load images for Level2
 		this.load.image("Level2BG", "images/nebula-green.jpg");		

@@ -1,6 +1,10 @@
 Pendulum.GameOver = function(game) {}
 
 Pendulum.GameOver.prototype = {
+
+	init: function(level) {
+		console.log("Level: " + level);
+	},
 	
 	create: function() {
 		// Background
@@ -17,10 +21,13 @@ Pendulum.GameOver.prototype = {
 		restart.anchor.setTo(0.5, 0.5);
 		menu = this.add.button(this.world.width/2, this.world.centerY+250, "menu", this.menu, this);
 		menu.anchor.setTo(0.5, 0.5);
+
+		//score = this.state.states['endGameScreen'].score;
+		//console.log(score);
 	},
 
 	restart: function() {
-		this.state.start("Level1");
+		this.state.start("Level" + level);
 		//this.state.start("StartMenu");
 	},
 

@@ -17,7 +17,28 @@ Pendulum.Level1.prototype.buildLevel = function() {
 
 	// Backgorund as tileSprite to have continuously moving background
 	BG = this.add.tileSprite(0, 0, 1024, 600, "Level1BG");	
-	this.speed = 1; 
+	this.speed = 1;  
+
+	this.time.events.add(Phaser.Timer.SECOND * 2, this.blinkRight, this);
+	this.time.events.add(Phaser.Timer.SECOND * 7, this.blinkLeft, this);
+	this.time.events.add(Phaser.Timer.SECOND * 12, this.blinkRight, this);
+	this.time.events.add(Phaser.Timer.SECOND * 17, this.blinkLeft, this);
+	this.time.events.add(Phaser.Timer.SECOND * 22, this.blinkRight, this);
+}
+
+Pendulum.Level1.prototype.blinkRight = function () {
+	// Debugging
+	//console.log("BLINK RIGHT");
+
+	buttonRight.alpha = 0;
+	this.add.tween(buttonRight).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true, 0, 8, true);
+}
+Pendulum.Level1.prototype.blinkLeft = function () {
+	// Debugging
+    //console.log("BLINK LEFT");
+
+	buttonLeft.alpha = 0;
+	this.add.tween(buttonLeft).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true, 0, 8, true);
 }
 
 Pendulum.Level1.prototype.buildObstacles = function(obstacles) {

@@ -29,12 +29,12 @@ Pendulum.Game.prototype = {
 
 		//  Our controls
 		cursors = this.input.keyboard.createCursorKeys();
-
-		buttonLeft = this.add.sprite(0, this.world.height - 96, 'left');
+		// Left button
+		buttonLeft = this.add.sprite(6, this.world.height - 103, 'left');
 		buttonLeft.inputEnabled = true;
 		buttonLeft.input.pointerOver.id = 1;
-
-		buttonRight = this.add.sprite(this.world.width - 96, this.world.height - 96, 'right');
+		// Right button
+		buttonRight = this.add.sprite(this.world.width - 104, this.world.height - 103, 'right');
 		buttonRight.inputEnabled = true;
 		buttonRight.input.pointerOver.id = 1;
 
@@ -94,38 +94,32 @@ Pendulum.Game.prototype = {
 
 /*
 	buildOrbGroup: function() {
+
+		orbs = this.add.group();
+
+		for(var i=0; i<10; i++) {
+
+		}
 	
-	}
+	},
+
+	buildSpaceRocks: function() {
+    this.spacerockgroup = this.add.group();
+    for(var i=0; i<this.totalSpacerocks; i++) {
+        var r = this.spacerockgroup.create(this.rnd.integerInRange(0, this.world.width), this.rnd.realInRange(-1500, 0), 'spacerock', 'SpaceRock0000');
+        var scale = this.rnd.realInRange(0.3, 1.0);
+        r.scale.x = scale;
+        r.scale.y = scale;
+        this.physics.enable(r, Phaser.Physics.ARCADE);
+        r.enableBody = true;
+        r.body.velocity.y = this.rnd.integerInRange(200, 400);
+        r.animations.add('Fall');
+        r.animations.play('Fall', 24, true);
+    }
+
+},
 */
-
-	update: function() {
-
-		BG.tilePosition.y += this.speed;
-		obstacles.y += this.speed;
-
-		// Checks collison using overlap since the objects doesnt need to be seperated
-		this.physics.arcade.overlap(end, obstacles, this.die, null, this);
-
-		// Moving the end of the pendulum (player)
-		if (cursors.left.isDown || buttonLeft.input.pointerOver() && (this.inputActive)) {
-
-			// Rotate pendlum clockwise
-			pendulum.rotation += 0.05;
-		}
-		else if (cursors.right.isDown || buttonRight.input.pointerOver() && (this.inputActive)) {
-
-			// Rotate pendulum counter clockwise
-			pendulum.rotation -= 0.05;
-		}
-		else {
-
-			// Stand still
-			//player.animations.stop();
-
-		}
-	}, 
-
-	// Called when pendulum hits obstacle
+// Called when pendulum hits obstacle
 	die: function() {
 		// Debugging
 		//console.log("HIT");
@@ -147,6 +141,33 @@ Pendulum.Game.prototype = {
 
 			// Go to Game Won state
 			this.state.start("GameWon",true, false, level);
+		}
+	},
+
+	update: function() {
+
+		BG.tilePosition.y += this.speed;
+		obstacles.y += this.speed;
+
+		// Checks collison using overlap since the objects doesnt need to be seperated
+		//this.physics.arcade.overlap(end, obstacles, this.die, null, this);
+
+		// Moving the end of the pendulum (player)
+		if (cursors.left.isDown || buttonLeft.input.pointerOver() && (this.inputActive)) {
+
+			// Rotate pendlum clockwise
+			pendulum.rotation += 0.05;
+		}
+		else if (cursors.right.isDown || buttonRight.input.pointerOver() && (this.inputActive)) {
+
+			// Rotate pendulum counter clockwise
+			pendulum.rotation -= 0.05;
+		}
+		else {
+
+			// Stand still
+			//player.animations.stop();
+
 		}
 	}
 }

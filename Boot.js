@@ -37,6 +37,7 @@ Pendulum.Boot.prototype = {
 
 		// Add input
 		this.input.addPointer();
+		this.input.addPointer();
 
 		// Backgroundcolor of stage
 		//this.stage.backgroundColor = "#171642";

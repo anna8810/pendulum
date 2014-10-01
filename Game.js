@@ -150,15 +150,21 @@ Pendulum.Game.prototype = {
 		obstacles.y += this.speed;
 
 		// Checks collison using overlap since the objects doesnt need to be seperated
-		//this.physics.arcade.overlap(end, obstacles, this.die, null, this);
+		this.physics.arcade.overlap(end, obstacles, this.die, null, this);
 
 		// Moving the end of the pendulum (player)
-		if (cursors.left.isDown || buttonLeft.input.pointerOver() && (this.inputActive)) {
+		// First if statement for arrowkey
+		// Sedond if statement for touch on mobile device
+		if (cursors.left.isDown || this.input.pointer1.isDown && this.input.x < this.world.width/2) {
+			// Debugging
+			//console.log("LEFT");
 
 			// Rotate pendlum clockwise
 			pendulum.rotation += 0.05;
 		}
-		else if (cursors.right.isDown || buttonRight.input.pointerOver() && (this.inputActive)) {
+		else if (cursors.right.isDown || this.input.pointer1.isDown && this.input.x > this.world.width/2) {
+			// Debugging
+			//console.log("RIGHT");
 
 			// Rotate pendulum counter clockwise
 			pendulum.rotation -= 0.05;

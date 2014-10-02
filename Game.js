@@ -30,13 +30,15 @@ Pendulum.Game.prototype = {
 		//  Our controls
 		cursors = this.input.keyboard.createCursorKeys();
 		// Left button
-		buttonLeft = this.add.sprite(6, this.world.height - 103, 'left');
-		buttonLeft.inputEnabled = true;
-		buttonLeft.input.pointerOver.id = 1;
+		leftSide = this.add.sprite(0, 0, 'left');
+		leftSide.alpha = 0;
+		leftSide.inputEnabled = true;
+		leftSide.input.pointerOver.id = 1;
 		// Right button
-		buttonRight = this.add.sprite(this.world.width - 104, this.world.height - 103, 'right');
-		buttonRight.inputEnabled = true;
-		buttonRight.input.pointerOver.id = 1;
+		rightSide = this.add.sprite(this.world.width - 400, 0, 'right');
+		rightSide.alpha = 0;
+		rightSide.inputEnabled = true;
+		rightSide.input.pointerOver.id = 1;
 
 		this.input.onDown.add(this.activeInput, this);
 		this.input.onUp.add(this.releaseInput, this);
@@ -73,9 +75,9 @@ Pendulum.Game.prototype = {
 		pendulum.pivot.y = this.world.height/2;
 
 		// Add center and end to pendulum
-		center = pendulum.create(this.world.width/2, this.world.height/2, "center");
-		center.anchor.setTo(0.5, 0.5);
-		end = pendulum.create(this.world.width/2, this.world.height/2+100, "end");
+		center = pendulum.create(this.world.width/2, this.world.height/2, "svans");
+		center.anchor.setTo(0.5, 0);
+		end = pendulum.create(this.world.width/2, this.world.height/2+140, "head");
 		end.anchor.setTo(0.5, 0.5);
 		// Enable physics for collsion to work
 		this.physics.enable(end, Phaser.Physics.ARCADE);	
@@ -122,9 +124,8 @@ Pendulum.Game.prototype = {
 // Called when pendulum hits obstacle
 	die: function() {
 		// Debugging
-		//console.log("HIT");
-		customParam1 = 1;
-		customParam2 = 2;
+		console.log("HIT");
+
 		// Go to Game Over state
 		this.state.start("GameOver",true, false, level);
 	},
@@ -155,14 +156,14 @@ Pendulum.Game.prototype = {
 		// Moving the end of the pendulum (player)
 		// First if statement for arrowkey
 		// Sedond if statement for touch on mobile device
-		if (cursors.left.isDown || this.input.pointer1.isDown && this.input.x < this.world.width/2) {
+		if (cursors.left.isDown || this.input.pointer1.isDown && this.input.x < this.world.width/2 || leftSide.input.pointerOver() && (this.inputActive)) {
 			// Debugging
 			//console.log("LEFT");
 
 			// Rotate pendlum clockwise
 			pendulum.rotation += 0.05;
 		}
-		else if (cursors.right.isDown || this.input.pointer1.isDown && this.input.x > this.world.width/2) {
+		else if (cursors.right.isDown || this.input.pointer1.isDown && this.input.x > this.world.width/2 || rightSide.input.pointerOver() && (this.inputActive)) {
 			// Debugging
 			//console.log("RIGHT");
 

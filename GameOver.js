@@ -3,7 +3,7 @@ Pendulum.GameOver = function(game) {}
 Pendulum.GameOver.prototype = {
 
 	init: function(level) {
-		console.log("Level: " + level);
+		//console.log("Level: " + level);
 	},
 	
 	create: function() {

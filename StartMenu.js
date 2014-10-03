@@ -13,6 +13,7 @@ Pendulum.StartMenu.prototype = {
 		title.anchor.setTo(0.5, 0.5);
 		click = this.add.image(this.world.width/2, this.world.height/2 + 150, "click");
 		click.anchor.setTo(0.5, 0.5);
+		;
 	},
 
 	startGame: function(pointer) {

@@ -11,16 +11,18 @@ Pendulum.Boot.prototype = {
 	},
 
 	create: function() {
-		// Shows all even if size is strange?
-		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-		
-		// Minimun size of game 
-		this.scale.minWidth = 512;
-		this.scale.minHeight = 300;
 
-		// Maximum size of game
-		this.scale.maxWidth = 1024;
-		this.scale.maxHeight = 600;
+		if (this.game.device.desktop) {
+			// Debugging
+			//console.log("On desctop");
+		}
+		else {
+			// Debugging
+			//console.log("On other device");
+			this.scale.maxWidth = 320;
+			this.scale.maxHeight = 188;
+		
+		}
 
 		// Center game
 		this.scale.pageAlignHorizontally = true;

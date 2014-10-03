@@ -3,13 +3,13 @@ Pendulum.GameWon = function(game) {}
 Pendulum.GameWon.prototype = {
 
 	init: function(level) {
-		console.log("Level: " + level);
+		//console.log("Level: " + level);
 	},
 	
 	create: function() {
 		// Background and text
 		startBG = this.add.image(0, 0, "startScreen");
-		winning = this.add.image(this.world.width/2, this.world.height/2, "winning");
+		winning = this.add.image(this.world.width/2, this.world.height/2-50, "winning");
 		winning.anchor.setTo(0.5, 0.5);
 		
 		// Buttons

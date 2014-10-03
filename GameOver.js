@@ -9,7 +9,7 @@ Pendulum.GameOver.prototype = {
 	create: function() {
 		// Background and text
 		startBG = this.add.image(0, 0, "startScreen");
-		over = this.add.image(this.world.width/2, this.world.height/2, "over");
+		over = this.add.image(this.world.width/2, this.world.height/2-50, "over");
 		over.anchor.setTo(0.5, 0.5);
 	
 		// Buttons

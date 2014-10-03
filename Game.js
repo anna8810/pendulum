@@ -158,14 +158,14 @@ Pendulum.Game.prototype = {
 		// Moving the end of the pendulum (player)
 		// First if statement for arrowkey
 		// Sedond if statement for touch on mobile device
-		if (cursors.left.isDown || this.input.pointer1.isDown && this.input.x < this.world.width/2 || leftSide.input.pointerOver() && (this.inputActive)) {
+		if (cursors.left.isDown || this.input.pointer1.isDown && this.input.x < this.world.width/2 ){//|| leftSide.input.pointerOver() && (this.inputActive)) {
 			// Debugging
 			//console.log("LEFT");
 
 			// Rotate pendlum clockwise
 			pendulum.rotation += 0.05;
 		}
-		else if (cursors.right.isDown || this.input.pointer1.isDown && this.input.x > this.world.width/2 || rightSide.input.pointerOver() && (this.inputActive)) {
+		else if (cursors.right.isDown || this.input.pointer1.isDown && this.input.x > this.world.width/2 ){//|| rightSide.input.pointerOver() && (this.inputActive)) {
 			// Debugging
 			//console.log("RIGHT");
 

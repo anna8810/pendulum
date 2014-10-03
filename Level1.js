@@ -8,17 +8,16 @@ Pendulum.Level1 = function(game) {
 Pendulum.Level1.prototype = Object.create(Pendulum.Game.prototype);
 Pendulum.Level1.prototype.constructor = Pendulum.Level1;
 
-
 Pendulum.Level1.prototype.buildLevel = function() {
 	// Debugging
 	//console.log("Level1.buildWorld");
 
 	level = 1;
+	this.speed = 1; 
 
 	// Backgorund as tileSprite to have continuously moving background
 	BG = this.add.tileSprite(0, 0, 1024, 600, "Level1BG");	
-	this.speed = 1; 
-
+	
 	// Tutoring
 	this.time.events.add(Phaser.Timer.SECOND * 2, this.blinkRight, this);
 	this.time.events.add(Phaser.Timer.SECOND * 7, this.blinkLeft, this);
@@ -37,9 +36,9 @@ Pendulum.Level1.prototype.blinkRight = function () {
 }
 Pendulum.Level1.prototype.blinkLeft = function () {
 	// Debugging
-    //console.log("BLINK LEFT");
+	//console.log("BLINK LEFT");
 
-    rightSide.alpha = 0;
+	rightSide.alpha = 0;
 	leftSide.alpha = 0;
 	this.add.tween(leftSide).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 3, true);
 }
@@ -51,16 +50,14 @@ Pendulum.Level1.prototype.buildObstacles = function(obstacles) {
 	// Total amount of obstacles
 	obstaclesTotal = 5;
 	// Uglyhack
-	obstaclePassed = 1-obstaclesTotal;//*(-1)+1;
+	obstaclePassed = 1-obstaclesTotal;
 
 	left = true; 
 
 	var o;
-
 	for(var i=0; i<obstaclesTotal; ++i) {
 		// DEBUGGING
 		//console.log(i);
-		//console.log(i)
 
 		if(left) {
 			o = obstacles.create(-231+20, -300*i, "rectangle");
@@ -78,22 +75,3 @@ Pendulum.Level1.prototype.buildObstacles = function(obstacles) {
 
 // Phaser needs this reaaly bad. Dont know why. Stupid Phaser...
 Pendulum.Level1.prototype.render = function() {}
-
-
-/* VARFÖR KAN JAG INTE SKRIVA SÅHÄÄÄR?
-Pendulum.Level1.prototype = {
-
-	buildWorld: function() {
-
-		// Backgorund as tileSprite to have continuously moving background
-		BG = this.add.tileSprite(0, 0, 1024, 600, "gameBG");	
-
-		console.log("Leve1.buildWorld");
-
-		this.speed = 5;
-
-	}, 
-
-	preload: function() {}
-}
-*/

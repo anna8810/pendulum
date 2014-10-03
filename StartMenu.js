@@ -1,8 +1,4 @@
-Pendulum.StartMenu = function(game) {
-
-	//this.startBG;
-	//this.startPrompt;
-}
+Pendulum.StartMenu = function(game) {}
 
 Pendulum.StartMenu.prototype = {
 	

@@ -1,7 +1,6 @@
 Pendulum.Preloader = function(game) {
-	this.preloadBar = null;
-	this.titleText = null;
-	this.ready = false;
+//	this.preloadBar = null;
+//	this.ready = false;
 }
 
 Pendulum.Preloader.prototype = {
@@ -12,38 +11,30 @@ Pendulum.Preloader.prototype = {
 		this.preloadBar.anchor.setTo(0.5, 0.5);
 		this.load.setPreloadSprite(this.preloadBar);
 
-		// Load image and text for startscreen
-		this.load.image("startScreen", "images/startBG.jpg");
-		this.load.image("title", "images/pendulum.png");
-		this.load.image("click", "images/click_to_start.png");
-		this.load.image("over", "images/game_over.png");
-		this.load.image("winning", "images/winning.png");
-		this.load.bitmapFont("eightbitwonder", "fonts/eightbitwonder.png", "fonts/eightbitwonder.fnt");
+		// Backgrounds
+		this.load.image("startScreen", "images/backgrounds/startBG.jpg");
+		this.load.image("Level1BG", "images/backgrounds/1green.jpg");
+		this.load.image("Level2BG", "images/backgrounds/1blue.jpg");		
+		this.load.image("Level3BG", "images/backgrounds/1red.jpg");
 
-		// Load images for the game
-		this.load.image("center", "images/ball-purple.png");
-		this.load.image("svans", "images/svans17.png");
-		this.load.image("head", "images/head6.png");
-		this.load.image("end", "images/ball-purple.png");
-		this.load.image("rectangle", "images/rectangle.png");
+		// Text
+		this.load.image("title", "images/text/pendulum.png");
+		this.load.image("click", "images/text/click_to_start.png");
+		this.load.image("menu", "images/text/menu.png");
+		this.load.image("winning", "images/text/winning.png");
+		this.load.image("over", "images/text/game_over.png");
+		this.load.image("next", "images/text/next_level.png");
+		this.load.image("restart", "images/text/restart.png");
+
 		this.load.image("left", "images/left.png");
 		this.load.image("right", "images/right.png");
+		
+		// Pendulum
+		this.load.image("tail", "images/svans.png");
+		this.load.image("head", "images/head2.png");
 
-		// Load images for game over and winning
-		this.load.image("restart", "images/restart.png");
-		this.load.image("next", "images/next_level.png");
-		this.load.image("menu", "images/menu.png");
-
-		// Load images for Level1
-		this.load.image("Level1BG", "images/1green.jpg");
-
-		// Load images for Level2
-		this.load.image("Level2BG", "images/nebula-blue.jpg");		
-
-		// Load images for Level3i
-		this.load.image("Level3BG", "images/nebula-red.jpg");
-
-		// Load images for Level4
+		// Obstacels
+		this.load.image("rectangle", "images/rectangle.png");	
 	},
 
 	create: function() {
@@ -53,7 +44,7 @@ Pendulum.Preloader.prototype = {
 	update: function() {
 		this.ready = true;
 
-		// Start the start menu
+		// Start the start menu state
 		this.state.start("StartMenu");
 
 		// Shortcuts! 

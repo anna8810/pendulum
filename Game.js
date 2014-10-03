@@ -24,24 +24,23 @@ Pendulum.Game.prototype = {
 		// Debugging
 		//console.log("Game.buildWorld");
 
-		// Run child function to set background and speed
+		// Run child function to build level
 		this.buildLevel();
 
-		//  Our controls
+		//  Controls
 		cursors = this.input.keyboard.createCursorKeys();
-		// Left button
+		this.input.onDown.add(this.activeInput, this);
+		this.input.onUp.add(this.releaseInput, this);
+		// Left side button
 		leftSide = this.add.sprite(0, 0, 'left');
 		leftSide.alpha = 0;
 		leftSide.inputEnabled = true;
 		leftSide.input.pointerOver.id = 1;
-		// Right button
+		// Right side button
 		rightSide = this.add.sprite(this.world.width - 400, 0, 'right');
 		rightSide.alpha = 0;
 		rightSide.inputEnabled = true;
-		rightSide.input.pointerOver.id = 1;
-
-		this.input.onDown.add(this.activeInput, this);
-		this.input.onUp.add(this.releaseInput, this);
+		rightSide.input.pointerOver.id = 1;	
 	},
 
 	activeInput: function() {
@@ -65,22 +64,20 @@ Pendulum.Game.prototype = {
 	buildPendulum: function() {
 		// Create pendulum as a group to easier rotate
 		pendulum = this.add.group();
-
-		// Put pednulum group in the middle of the screen
 		pendulum.x = this.world.width/2;
 		pendulum.y = this.world.height/2;
 
-		// What point the pendulum group should rotate around
+		// Point the pendulum group should rotate around
 		pendulum.pivot.x = this.world.width/2;
 		pendulum.pivot.y = this.world.height/2;
 
-		// Add center and end to pendulum
-		center = pendulum.create(this.world.width/2, this.world.height/2, "svans");
-		center.anchor.setTo(0.5, 0);
-		end = pendulum.create(this.world.width/2, this.world.height/2+140, "head");
-		end.anchor.setTo(0.5, 0.5);
+		// Add tail and head to pendulum
+		tail = pendulum.create(this.world.width/2, this.world.height/2, "tail");
+		tail.anchor.setTo(0.5, 0);
+		head = pendulum.create(this.world.width/2, this.world.height/2+140, "head");
+		head.anchor.setTo(0.5, 0.5);
 		// Enable physics for collsion to work
-		this.physics.enable(end, Phaser.Physics.ARCADE);	
+		this.physics.enable(head, Phaser.Physics.ARCADE);	
 	},
 
 	buildObstacleGroup: function() {
@@ -90,11 +87,15 @@ Pendulum.Game.prototype = {
 		obstacles.enableBody = true;
 		obstacles.x = this.world.width/2;
 
-		// Create obstacles in each level
+		// Create obstacles in child function
 		this.buildObstacles(obstacles);
 	},
 
-/*
+/* ***** TO DO 
+/* ***** Create points to pick up along the way. 
+/* ***** More points make ha better score
+/* ***** Needed if endless mode is ever built
+/* *****
 	buildOrbGroup: function() {
 
 		orbs = this.add.group();
@@ -121,16 +122,17 @@ Pendulum.Game.prototype = {
 
 },
 */
-// Called when pendulum hits obstacle
+
+	// Called when pendulum hits obstacle
 	die: function() {
 		// Debugging
-		console.log("HIT");
+		//console.log("HIT");
 
 		// Go to Game Over state
 		this.state.start("GameOver",true, false, level);
 	},
 
-	// Called when all obstacles are passed
+	// Called when obstacle is passed
 	obstaclePassed: function() {
 		obstaclePassed++;
 
@@ -146,12 +148,12 @@ Pendulum.Game.prototype = {
 	},
 
 	update: function() {
-
+		// Move background and obstacles
 		BG.tilePosition.y += this.speed;
 		obstacles.y += this.speed;
 
 		// Checks collison using overlap since the objects doesnt need to be seperated
-		this.physics.arcade.overlap(end, obstacles, this.die, null, this);
+		this.physics.arcade.overlap(head, obstacles, this.die, null, this);
 
 		// Moving the end of the pendulum (player)
 		// First if statement for arrowkey
@@ -170,11 +172,6 @@ Pendulum.Game.prototype = {
 			// Rotate pendulum counter clockwise
 			pendulum.rotation -= 0.05;
 		}
-		else {
-
-			// Stand still
-			//player.animations.stop();
-
-		}
+		else {}
 	}
 }

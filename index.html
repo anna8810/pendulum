@@ -17,6 +17,9 @@
 		<script src="GameWon.js"></script>
 		<script src="Level1.js"></script>
 		<script src="Level2.js"></script>
+		<script src="Level3.js"></script>
+
+		<script src="Test.js"></script>
 
 		<style>
 			body {
@@ -52,6 +55,9 @@
 				game.state.add("GameWon", Pendulum.GameWon);
 				game.state.add("Level1", Pendulum.Level1);
 				game.state.add("Level2", Pendulum.Level2);
+				game.state.add("Level3", Pendulum.Level3);
+
+				game.state.add("Test", Pendulum.Test);
 
 				// Booting game!
 				game.state.start("Boot");

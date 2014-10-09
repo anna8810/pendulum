@@ -15,7 +15,7 @@ Pendulum.Preloader.prototype = {
 		this.load.image("startScreen", "images/backgrounds/startBG.jpg");
 		this.load.image("Level1BG", "images/backgrounds/1green.jpg");
 		this.load.image("Level2BG", "images/backgrounds/1blue.jpg");		
-		this.load.image("Level3BG", "images/backgrounds/1red.jpg");
+		this.load.image("Level3BG", "images/backgrounds/1yellow.jpg");
 
 		// Text
 		this.load.image("title", "images/text/pendulum.png");
@@ -30,11 +30,17 @@ Pendulum.Preloader.prototype = {
 		this.load.image("right", "images/right.png");
 		
 		// Pendulum
-		this.load.image("tail", "images/tail.png");
-		this.load.image("head", "images/head.png");
+		this.load.image("tail", "images/pendulum/tail.png");
+		this.load.spritesheet("head", "images/pendulum/head.png", 40, 40);
 
 		// Obstacels
-		this.load.image("rectangle", "images/rectangle.png");	
+		this.load.image("rectangleL", "images/obstacles/rectangleL.png");
+		this.load.image("rectangle", "images/obstacles/rectangle.png");	
+		this.load.image("circle", "images/obstacles/circle.png");
+		this.load.image("circleS", "images/obstacles/circleS.png");	
+
+		// TEST
+		this.load.spritesheet("test", "images/smokeg.png", 255, 255);
 	},
 
 	create: function() {
@@ -45,10 +51,13 @@ Pendulum.Preloader.prototype = {
 		this.ready = true;
 
 		// Start the start menu state
-		this.state.start("StartMenu");
+		//this.state.start("StartMenu");
 
 		// Shortcuts! 
+		this.state.start("Test");
 		//this.state.start("Level1");
+		//this.state.start("Level2");
+		//this.state.start("Level3");
 		//this.state.start("GameOver");
 		//this.state.start("GameWon");
 

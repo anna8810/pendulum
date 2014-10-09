@@ -18,6 +18,7 @@ Pendulum.Game.prototype = {
 		this.buildPath();
 		this.buildPendulum();
 		this.buildObstacleGroup();
+		this.buildPointGroup();
 	},
 
 	buildWorld: function() {
@@ -69,19 +70,24 @@ Pendulum.Game.prototype = {
 
 		// Point the pendulum group should rotate around
 		pendulum.pivot.x = this.world.width/2;
-		pendulum.pivot.y = this.world.height/2;
+		pendulum.pivot.y = this.world.height/2-140;
 
-		// Add tail and head to pendulum
-		tail = pendulum.create(this.world.width/2, this.world.height/2, "tail");
+		// Add tail pendulum
+		tail = pendulum.create(this.world.width/2, this.world.height/2-140, "tail");
 		tail.anchor.setTo(0.5, 0);
-		head = pendulum.create(this.world.width/2, this.world.height/2+140, "head");
+		// Add head as sprite for animation
+		head = this.add.sprite(this.world.width/2, this.world.height/2, "head");
 		head.anchor.setTo(0.5, 0.5);
+		head.animations.add("head", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 25, true);
+		head.animations.play("head", 25, true);
+		head.smoothed = true;
+		pendulum.add(head);
+
 		// Enable physics for collsion to work
 		this.physics.enable(head, Phaser.Physics.ARCADE);	
 	},
 
 	buildObstacleGroup: function() {
-
 		// Create obstacle group
 		obstacles = this.add.group();
 		obstacles.enableBody = true;
@@ -89,6 +95,17 @@ Pendulum.Game.prototype = {
 
 		// Create obstacles in child function
 		this.buildObstacles(obstacles);
+	},
+
+	buildPointGroup: function() {	
+		// Create star group
+		points = this.add.group();
+		//points.enableBody = true;
+		points.x = this.world.width/2;
+
+		// Create obstacles in child function
+		this.buildPoints(points);
+
 	},
 
 /* ***** TO DO 
@@ -135,6 +152,8 @@ Pendulum.Game.prototype = {
 	// Called when obstacle is passed
 	obstaclePassed: function() {
 		obstaclePassed++;
+		// Debugging
+		//console.log("obstaclePassed: " + obstaclePassed);
 
 		// Uglyhack
 		if(obstaclePassed == obstaclesTotal)
@@ -151,6 +170,7 @@ Pendulum.Game.prototype = {
 		// Move background and obstacles
 		BG.tilePosition.y += this.speed;
 		obstacles.y += this.speed;
+		points.y += this.speed;
 
 		// Checks collison using overlap since the objects doesnt need to be seperated
 		this.physics.arcade.overlap(head, obstacles, this.die, null, this);

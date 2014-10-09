@@ -1,12 +1,14 @@
 Pendulum.Level1 = function(game) {
+	/*
 	var speed;
 	var obstaclesTotal;
 	var obstaclesPassed;
 	var level;
+	*/
 }
 
 Pendulum.Level1.prototype = Object.create(Pendulum.Game.prototype);
-Pendulum.Level1.prototype.constructor = Pendulum.Level1;
+//Pendulum.Level1.prototype.constructor = Pendulum.Level1;
 
 Pendulum.Level1.prototype.buildLevel = function() {
 	// Debugging
@@ -19,28 +21,14 @@ Pendulum.Level1.prototype.buildLevel = function() {
 	BG = this.add.tileSprite(0, 0, 1024, 600, "Level1BG");	
 	
 	// Tutoring
-	this.time.events.add(Phaser.Timer.SECOND * 2, this.blinkRight, this);
-	this.time.events.add(Phaser.Timer.SECOND * 7, this.blinkLeft, this);
-	this.time.events.add(Phaser.Timer.SECOND * 12, this.blinkRight, this);
-	this.time.events.add(Phaser.Timer.SECOND * 17, this.blinkLeft, this);
-	this.time.events.add(Phaser.Timer.SECOND * 22, this.blinkRight, this);
+	this.time.events.add(Phaser.Timer.SECOND * 2, this.blinkArrow, this);
 }
 
-Pendulum.Level1.prototype.blinkRight = function () {
-	// Debugging
-	//console.log("BLINK RIGHT");
+Pendulum.Level1.prototype.blinkArrow = function () {
 	rightSide.alpha = 0;
 	leftSide.alpha = 0;
-	this.add.tween(rightSide).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 3, true);
+	this.add.tween(rightSide).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 5, true);
 	
-}
-Pendulum.Level1.prototype.blinkLeft = function () {
-	// Debugging
-	//console.log("BLINK LEFT");
-
-	rightSide.alpha = 0;
-	leftSide.alpha = 0;
-	this.add.tween(leftSide).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 3, true);
 }
 
 Pendulum.Level1.prototype.buildObstacles = function(obstacles) {
@@ -48,29 +36,14 @@ Pendulum.Level1.prototype.buildObstacles = function(obstacles) {
 	//console.log("Level1.buildObstacles");
 
 	// Total amount of obstacles
-	obstaclesTotal = 5;
+	obstaclesTotal = 1;
 	// Uglyhack
 	obstaclePassed = 1-obstaclesTotal;
 
-	left = true; 
+	o = obstacles.create(-240, -400, "rectangleL");
 
-	var o;
-	for(var i=0; i<obstaclesTotal; ++i) {
-		// DEBUGGING
-		//console.log(i);
-
-		if(left) {
-			o = obstacles.create(-231+20, -300*i, "rectangle");
-			left = false;
-		}
-		else {
-			o = obstacles.create(0-20, -300*i, "rectangle");
-			left = true;
-		}
-
-		o.checkWorldBounds = true;
-		o.events.onOutOfBounds.add(this.obstaclePassed, this);
-	}
+	o.checkWorldBounds = true;
+	o.events.onOutOfBounds.add(this.obstaclePassed, this);
 }
 
 // Phaser needs this reaaly bad. Dont know why. Stupid Phaser...

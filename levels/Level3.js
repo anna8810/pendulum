@@ -13,7 +13,7 @@ Pendulum.Level3.prototype.buildLevel = function() {
 	//console.log("Level3.buildWorld");
 
 	level = 3;
-	this.speed = 5; 
+	this.speed = 2; 
 
 	// Backgorund as tileSprite to have continuously moving background
 	BG = this.add.tileSprite(0, 0, 1024, 600, "Level3BG");	

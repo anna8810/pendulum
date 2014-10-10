@@ -1,7 +1,4 @@
-Pendulum.Preloader = function(game) {
-//	this.preloadBar = null;
-//	this.ready = false;
-}
+Pendulum.Preloader = function(game) {}
 
 Pendulum.Preloader.prototype = {
 
@@ -51,10 +48,10 @@ Pendulum.Preloader.prototype = {
 		this.ready = true;
 
 		// Start the start menu state
-		//this.state.start("StartMenu");
+		this.state.start("StartMenu");
 
 		// Shortcuts! 
-		this.state.start("Test");
+		//this.state.start("Test");
 		//this.state.start("Level1");
 		//this.state.start("Level2");
 		//this.state.start("Level3");

@@ -8,7 +8,7 @@ Pendulum.Game = function() {
 	var movingLeft = false;
 	var movingRight = false;
 	var level;
-};
+}
 
 Pendulum.Game.prototype = {
 
@@ -27,6 +27,7 @@ Pendulum.Game.prototype = {
 
 		// Run child function to build level
 		this.buildLevel();
+		nrOfPoints = 0;
 
 		//  Controls
 		cursors = this.input.keyboard.createCursorKeys();
@@ -97,49 +98,6 @@ Pendulum.Game.prototype = {
 		this.buildObstacles(obstacles);
 	},
 
-	buildPointGroup: function() {	
-		// Create star group
-		points = this.add.group();
-		//points.enableBody = true;
-		points.x = this.world.width/2;
-
-		// Create obstacles in child function
-		this.buildPoints(points);
-
-	},
-
-/* ***** TO DO 
-/* ***** Create points to pick up along the way. 
-/* ***** More points make ha better score
-/* ***** Needed if endless mode is ever built
-/* *****
-	buildOrbGroup: function() {
-
-		orbs = this.add.group();
-
-		for(var i=0; i<10; i++) {
-
-		}
-	
-	},
-
-	buildSpaceRocks: function() {
-    this.spacerockgroup = this.add.group();
-    for(var i=0; i<this.totalSpacerocks; i++) {
-        var r = this.spacerockgroup.create(this.rnd.integerInRange(0, this.world.width), this.rnd.realInRange(-1500, 0), 'spacerock', 'SpaceRock0000');
-        var scale = this.rnd.realInRange(0.3, 1.0);
-        r.scale.x = scale;
-        r.scale.y = scale;
-        this.physics.enable(r, Phaser.Physics.ARCADE);
-        r.enableBody = true;
-        r.body.velocity.y = this.rnd.integerInRange(200, 400);
-        r.animations.add('Fall');
-        r.animations.play('Fall', 24, true);
-    }
-
-},
-*/
-
 	// Called when pendulum hits obstacle
 	die: function() {
 		// Debugging
@@ -166,6 +124,54 @@ Pendulum.Game.prototype = {
 		}
 	},
 
+	buildPointGroup: function() {	
+		// Create star group
+		points = this.add.group();
+		points.enableBody = true;
+		points.x = this.world.width/2;
+
+		// Create points in child function
+		this.buildPoints(points);
+	},
+
+	// Called when point is taken
+	getPoint: function(head, point) {
+		nrOfPoints++;
+		// Debugging
+		//console.log("nrOfPoints: " +  nrOfPoints);
+		
+		point.kill();
+
+		if(nrOfPoints == pointsTotal)
+		{
+			// Debugging
+			//console.log("WINNING");
+
+			// Go to Game Won state
+			this.state.start("GameWon",true, false, level);
+		}
+
+	},
+
+/* ***** TO DO 
+/* ***** Create points dynamically
+/* *****
+	buildSpaceRocks: function() {
+    this.spacerockgroup = this.add.group();
+    for(var i=0; i<this.totalSpacerocks; i++) {
+        var r = this.spacerockgroup.create(this.rnd.integerInRange(0, this.world.width), this.rnd.realInRange(-1500, 0), 'spacerock', 'SpaceRock0000');
+        var scale = this.rnd.realInRange(0.3, 1.0);
+        r.scale.x = scale;
+        r.scale.y = scale;
+        this.physics.enable(r, Phaser.Physics.ARCADE);
+        r.enableBody = true;
+        r.body.velocity.y = this.rnd.integerInRange(200, 400);
+        r.animations.add('Fall');
+        r.animations.play('Fall', 24, true);
+    }
+
+},
+*/
 	update: function() {
 		// Move background and obstacles
 		BG.tilePosition.y += this.speed;
@@ -174,6 +180,7 @@ Pendulum.Game.prototype = {
 
 		// Checks collison using overlap since the objects doesnt need to be seperated
 		this.physics.arcade.overlap(head, obstacles, this.die, null, this);
+		this.physics.arcade.overlap(head, points, this.getPoint, null, this);
 
 		// Moving the end of the pendulum (player)
 		// First if statement for arrowkey

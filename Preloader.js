@@ -22,6 +22,7 @@ Pendulum.Preloader.prototype = {
 		this.load.image("over", "images/text/game_over.png");
 		this.load.image("next", "images/text/next_level.png");
 		this.load.image("restart", "images/text/restart.png");
+		this.load.image("hint", "images/text/hint.png");
 
 		this.load.image("left", "images/left.png");
 		this.load.image("right", "images/right.png");
@@ -36,8 +37,8 @@ Pendulum.Preloader.prototype = {
 		this.load.image("circle", "images/obstacles/circle.png");
 		this.load.image("circleS", "images/obstacles/circleS.png");	
 
-		// TEST
-		this.load.spritesheet("test", "images/smokeg.png", 255, 255);
+		// Point
+		this.load.spritesheet("point", "images/smoke.png", 255, 255);
 	},
 
 	create: function() {

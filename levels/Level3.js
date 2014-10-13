@@ -68,20 +68,18 @@ Pendulum.Level3.prototype.buildObstacles = function(obstacles) {
 
 Pendulum.Level3.prototype.buildPoints = function(points) {
 	// Debugging
-	console.log("Level3.buildPoints");
+	//console.log("Level3.buildPoints");
 
 	pointsTotal = 26; 
 	var p; 
 	for(var i=0; i<pointsTotal; i++) {
-		console.log((Math.sin((i*Math.PI)/10)));
 
-		p = this.add.sprite((Math.sin((i*Math.PI)/5))*140, 300-i*100, "test");
+		p = this.add.sprite((Math.sin((i*Math.PI)/5))*140, 300-i*100, "point");
 		p.anchor.setTo(0.5, 0.5);
-		p.animations.add("t", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 50, true);
-		p.animations.play("t", 20, true);
+		p.animations.add("p", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 50, true);
+		p.animations.play("p", 20, true);
 		p.scale.set(0.15);
 		points.add(p);
-		
 	}
 }
 

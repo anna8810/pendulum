@@ -102,7 +102,7 @@ Pendulum.Game.prototype = {
 	die: function() {
 		// Debugging
 		//console.log("HIT");
-
+		
 		// Go to Game Over state
 		this.state.start("GameOver",true, false, level);
 	},
@@ -150,28 +150,8 @@ Pendulum.Game.prototype = {
 			// Go to Game Won state
 			this.state.start("GameWon",true, false, level);
 		}
-
 	},
 
-/* ***** TO DO 
-/* ***** Create points dynamically
-/* *****
-	buildSpaceRocks: function() {
-    this.spacerockgroup = this.add.group();
-    for(var i=0; i<this.totalSpacerocks; i++) {
-        var r = this.spacerockgroup.create(this.rnd.integerInRange(0, this.world.width), this.rnd.realInRange(-1500, 0), 'spacerock', 'SpaceRock0000');
-        var scale = this.rnd.realInRange(0.3, 1.0);
-        r.scale.x = scale;
-        r.scale.y = scale;
-        this.physics.enable(r, Phaser.Physics.ARCADE);
-        r.enableBody = true;
-        r.body.velocity.y = this.rnd.integerInRange(200, 400);
-        r.animations.add('Fall');
-        r.animations.play('Fall', 24, true);
-    }
-
-},
-*/
 	update: function() {
 		// Move background and obstacles
 		BG.tilePosition.y += this.speed;

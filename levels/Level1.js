@@ -27,8 +27,7 @@ Pendulum.Level1.prototype.buildLevel = function() {
 Pendulum.Level1.prototype.blinkArrow = function () {
 	rightSide.alpha = 0;
 	leftSide.alpha = 0;
-	this.add.tween(rightSide).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 5, true);
-	
+	this.add.tween(rightSide).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 5, true);	
 }
 
 Pendulum.Level1.prototype.buildObstacles = function(obstacles) {
@@ -48,15 +47,16 @@ Pendulum.Level1.prototype.buildObstacles = function(obstacles) {
 
 Pendulum.Level1.prototype.buildPoints = function(points) {
 	// Debugging
-	console.log("Level1.buildPoints");
+	//console.log("Level1.buildPoints");
 
 	pointsTotal = 10; 
 	var p; 
 	for(var i=0; i<pointsTotal; i++) {
-		p = this.add.sprite(Math.sin(i*(Math.PI)/10)*140, 300-i*100, "test");
+		
+		p = this.add.sprite(Math.sin(i*(Math.PI)/10)*140, 300-i*100, "point");
 		p.anchor.setTo(0.5, 0.5);
-		p.animations.add("t", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 50, true);
-		p.animations.play("t", 20, true);
+		p.animations.add("p", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 50, true);
+		p.animations.play("p", 20, true);
 		p.scale.set(0.15);
 		points.add(p);
 	}

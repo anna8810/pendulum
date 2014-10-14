@@ -16,12 +16,11 @@ Pendulum.Boot.prototype = {
 			// Debugging
 			//console.log("On desctop");
 		}
-		else {
+		else { // TODO
 			// Debugging
 			//console.log("On other device");
 			this.scale.maxWidth = 320;
 			this.scale.maxHeight = 188;
-		
 		}
 
 		// Center game

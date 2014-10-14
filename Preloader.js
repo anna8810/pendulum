@@ -10,9 +10,12 @@ Pendulum.Preloader.prototype = {
 
 		// Backgrounds
 		this.load.image("startScreen", "images/backgrounds/startBG.jpg");
-		this.load.image("Level1BG", "images/backgrounds/1green.jpg");
-		this.load.image("Level2BG", "images/backgrounds/1blue.jpg");		
+
+		this.load.image("Level1BG", "images/backgrounds/1orange.jpg");
+		this.load.image("Level2BG", "images/backgrounds/1green.jpg");		
 		this.load.image("Level3BG", "images/backgrounds/1yellow.jpg");
+		this.load.image("Level4BG", "images/backgrounds/1blue.jpg");
+		this.load.image("Level5BG", "images/backgrounds/1red.jpg");
 
 		// Text
 		this.load.image("title", "images/text/pendulum.png");
@@ -32,8 +35,10 @@ Pendulum.Preloader.prototype = {
 		this.load.spritesheet("head", "images/pendulum/head.png", 40, 40);
 
 		// Obstacels
-		this.load.image("rectangleL", "images/obstacles/rectangleL.png");
-		this.load.image("rectangle", "images/obstacles/rectangle.png");	
+		this.load.image("VrectangleL", "images/obstacles/VrectangleL.png");
+		this.load.image("Vrectangle", "images/obstacles/Vrectangle.png");	
+		this.load.image("HrectangleL", "images/obstacles/HrectangleL.png");
+		this.load.image("Hrectangle", "images/obstacles/Hrectangle.png");	
 		this.load.image("circle", "images/obstacles/circle.png");
 		this.load.image("circleS", "images/obstacles/circleS.png");	
 
@@ -56,8 +61,8 @@ Pendulum.Preloader.prototype = {
 		//this.state.start("Level1");
 		//this.state.start("Level2");
 		//this.state.start("Level3");
+		//this.state.start("Level4");
 		//this.state.start("GameOver");
 		//this.state.start("GameWon");
-
 	}
 }

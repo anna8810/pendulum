@@ -165,6 +165,7 @@ Pendulum.Game.prototype = {
 		// Moving the end of the pendulum (player)
 		// First if statement for arrowkey
 		// Sedond if statement for touch on mobile device
+		// TODO : Clickable arrow button on desctop
 		if (cursors.left.isDown || this.input.pointer1.isDown && this.input.x < this.world.width/2 ){//|| leftSide.input.pointerOver() && (this.inputActive)) {
 			// Debugging
 			//console.log("LEFT");

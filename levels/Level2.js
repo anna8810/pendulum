@@ -1,10 +1,10 @@
 Pendulum.Level2 = function(game) {
-	/*
+/*
 	var speed;
 	var obstaclesTotal;
 	var obstaclesPassed;
 	var level;
-	*/
+*/
 }
 
 Pendulum.Level2.prototype = Object.create(Pendulum.Game.prototype);
@@ -12,7 +12,7 @@ Pendulum.Level2.prototype = Object.create(Pendulum.Game.prototype);
 
 Pendulum.Level2.prototype.buildLevel = function() {
 	// Debugging
-	//console.log("Level2.buildWorld");
+	//console.log("Level2.buildLevel");
 
 	level = 2;
 	this.speed = 1; 
@@ -40,7 +40,7 @@ Pendulum.Level2.prototype.buildObstacles = function(obstacles) {
 	// Uglyhack
 	obstaclePassed = 1-obstaclesTotal;
 
-	o = obstacles.create(-10, -400, "rectangleL");
+	o = obstacles.create(-10, -400, "VrectangleL");
 
 	o.checkWorldBounds = true;
 	o.events.onOutOfBounds.add(this.obstaclePassed, this);

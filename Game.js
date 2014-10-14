@@ -8,12 +8,14 @@ Pendulum.Game = function() {
 	var movingLeft = false;
 	var movingRight = false;
 	var level;
+	//obstaclesTotal = null;
 }
 
 Pendulum.Game.prototype = {
 
 	create: function() {
 
+		this.buildPointGroup();
 		this.buildWorld();
 		this.buildPath();
 		this.buildPendulum();
@@ -43,6 +45,9 @@ Pendulum.Game.prototype = {
 		rightSide.alpha = 0;
 		rightSide.inputEnabled = true;
 		rightSide.input.pointerOver.id = 1;	
+
+		totalP = this.returnTotalPoints();
+		score = this.add.text(this.world.width - 160, 10, "", {fill: "#FFF", font:"23px Segoe"});
 	},
 
 	activeInput: function() {
@@ -132,6 +137,7 @@ Pendulum.Game.prototype = {
 
 		// Create points in child function
 		this.buildPoints(points);
+
 	},
 
 	// Called when point is taken
@@ -141,6 +147,7 @@ Pendulum.Game.prototype = {
 		//console.log("nrOfPoints: " +  nrOfPoints);
 		
 		point.kill();
+		score.setText("Score: " + nrOfPoints + "/" + pointsTotal);
 
 		if(nrOfPoints == pointsTotal)
 		{
@@ -153,6 +160,9 @@ Pendulum.Game.prototype = {
 	},
 
 	update: function() {
+		// Tried to set the text earlier but it did not work, font not loaded yet?
+		score.setText("Score: " + nrOfPoints + "/" + pointsTotal);
+
 		// Move background and obstacles
 		BG.tilePosition.y += this.speed;
 		obstacles.y += this.speed;

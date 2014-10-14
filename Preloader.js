@@ -29,6 +29,7 @@ Pendulum.Preloader.prototype = {
 
 		this.load.image("left", "images/left.png");
 		this.load.image("right", "images/right.png");
+		this.load.image("score", "images/text/score.png");
 		
 		// Pendulum
 		this.load.image("tail", "images/pendulum/tail.png");

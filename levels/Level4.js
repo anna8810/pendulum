@@ -21,6 +21,10 @@ Pendulum.Level4.prototype.buildLevel = function() {
 	BG = this.add.tileSprite(0, 0, 1024, 600, "Level4BG");	
 }
 
+Pendulum.Level4.prototype.returnTotalPoints = function() {
+	return pointsTotal;
+}
+
 Pendulum.Level4.prototype.buildObstacles = function(obstacles) {
 	// Debugging
 	//console.log("Level4.buildObstacles");

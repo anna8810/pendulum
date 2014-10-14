@@ -1,10 +1,10 @@
 Pendulum.Level1 = function(game) {
-/*
+
 	var speed;
-	var obstaclesTotal;
+	obstaclesTotal = 3;
 	var obstaclesPassed;
 	var level;
-*/
+
 }
 
 Pendulum.Level1.prototype = Object.create(Pendulum.Game.prototype);
@@ -22,6 +22,10 @@ Pendulum.Level1.prototype.buildLevel = function() {
 	
 	// Tutoring
 	this.time.events.add(Phaser.Timer.SECOND * 2, this.blinkArrow, this);
+}
+
+Pendulum.Level1.prototype.returnTotalPoints = function() {
+	return pointsTotal;
 }
 
 Pendulum.Level1.prototype.blinkArrow = function () {

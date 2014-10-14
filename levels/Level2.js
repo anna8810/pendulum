@@ -24,6 +24,10 @@ Pendulum.Level2.prototype.buildLevel = function() {
 	this.time.events.add(Phaser.Timer.SECOND * 2, this.blinkArrow, this);
 }
 
+Pendulum.Level2.prototype.returnTotalPoints = function() {
+	return pointsTotal;
+}
+
 Pendulum.Level2.prototype.blinkArrow = function () {
 	rightSide.alpha = 0;
 	leftSide.alpha = 0;

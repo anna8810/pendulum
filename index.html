@@ -17,9 +17,6 @@
 		<script src="Levels.js"></script>
 		<script src="Credits.js"></script>
 
-		<script src="GameOver.js"></script>
-		<script src="GameWon.js"></script>
-
 		<script src="Game.js"></script>
 		<script src="Eternity.js"></script>
 
@@ -28,7 +25,9 @@
 		<script src="levels/Level3.js"></script>
 		<script src="levels/Level4.js"></script>
 
-		<script src="Test.js"></script>
+		<script src="GameWon.js"></script>
+		<script src="GameOver.js"></script>
+		<script src="EternityOver.js"></script>
 
 		<style>
 			body {
@@ -60,9 +59,6 @@
 				game.state.add("Levels", Pendulum.Levels);
 				game.state.add("Credits", Pendulum.Credits);
 
-				game.state.add("GameOver", Pendulum.GameOver);
-				game.state.add("GameWon", Pendulum.GameWon);
-
 				game.state.add("Game", Pendulum.Game);	
 				game.state.add("Eternity", Pendulum.Eternity);
 
@@ -71,7 +67,9 @@
 				game.state.add("Level3", Pendulum.Level3);
 				game.state.add("Level4", Pendulum.Level4);
 
-				game.state.add("Test", Pendulum.Test);
+				game.state.add("GameWon", Pendulum.GameWon);
+				game.state.add("GameOver", Pendulum.GameOver);
+				game.state.add("EternityOver", Pendulum.EternityOver);
 
 				// Booting game!
 				game.state.start("Boot");

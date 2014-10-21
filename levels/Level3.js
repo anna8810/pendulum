@@ -1,18 +1,11 @@
-Pendulum.Level3 = function(game) {
-/*	
-	var speed;
-	var obstaclesTotal;
-	var obstaclesPassed;
-	var level;
-*/
-}
+Pendulum.Level3 = function(game) {}
 
 Pendulum.Level3.prototype = Object.create(Pendulum.Game.prototype);
 //Pendulum.Level3.prototype.constructor = Pendulum.Level3;
 
 Pendulum.Level3.prototype.buildLevel = function() {
 	// Debugging
-	console.log("Level3.buildWorld");
+	//console.log("Level3.buildWorld");
 
 	level = 3;
 	this.speed = 3; 

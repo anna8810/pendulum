@@ -1,11 +1,7 @@
 Pendulum.GameWon = function(game) {}
 
 Pendulum.GameWon.prototype = {
-/*
-	init: function(level) {
-		//console.log("Level: " + level);
-	},
-*/	
+	
 	create: function() {
 		// Background and text
 		startBG = this.add.image(0, 0, "startScreen");

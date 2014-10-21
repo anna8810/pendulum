@@ -1,12 +1,7 @@
 Pendulum.GameOver = function(game) {}
 
 Pendulum.GameOver.prototype = {
-/* 
-	// Debugging
-	init: function(level) {
-		//console.log("Level: " + level);
-	},
-*/	
+	
 	create: function() {
 		// Background and text
 		startBG = this.add.image(0, 0, "startScreen");

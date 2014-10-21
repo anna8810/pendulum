@@ -3,21 +3,21 @@ Pendulum.Preloader = function(game) {}
 Pendulum.Preloader.prototype = {
 
 	preload: function() {
-		// Load images for title
+		// Load bar
 		this.preloadBar = this.add.sprite(this.world.centerX, this.world.centerY, "preloadBar");
 		this.preloadBar.anchor.setTo(0.5, 0.5);
 		this.load.setPreloadSprite(this.preloadBar);
 
-		// Title background
+		// Title & Background
 		this.load.image("title", "images/text/pendulum.png");
 		this.load.image("startScreen", "images/backgrounds/startBG.jpg");
 		
-		// Backgrounds
-		this.load.image("Level1BG", "images/backgrounds/1orange.jpg");
-		this.load.image("Level2BG", "images/backgrounds/1green.jpg");		
-		this.load.image("Level3BG", "images/backgrounds/1yellow.jpg");
-		this.load.image("Level4BG", "images/backgrounds/1blue.jpg");
-		this.load.image("Level5BG", "images/backgrounds/1red.jpg");
+		// Backgrounds for in game
+		this.load.image("Level1BG", "images/backgrounds/2purple.jpg");
+		this.load.image("Level2BG", "images/backgrounds/2yellow.jpg");		
+		this.load.image("Level3BG", "images/backgrounds/2blue.jpg");
+		this.load.image("Level4BG", "images/backgrounds/2red.jpg");
+		this.load.image("EternityBG", "images/backgrounds/2green.jpg");
 
 		// StartMenu
 		this.load.image("start", "images/text/start.png");
@@ -44,11 +44,12 @@ Pendulum.Preloader.prototype = {
 		this.load.image("menu", "images/text/menu.png");
 		this.load.image("hint", "images/text/hint.png");
 		
-
+		// Stuff
 		this.load.image("left", "images/left.png");
 		this.load.image("right", "images/right.png");
 		this.load.image("score", "images/text/score.png");
 		this.load.image("back", "images/back.png");
+		this.load.image("infinity", "images/infinity.png")
 		
 		// Pendulum
 		this.load.image("tail", "images/pendulum/tail.png");
@@ -85,5 +86,6 @@ Pendulum.Preloader.prototype = {
 		//this.state.start("Level4");
 		//this.state.start("GameOver");
 		//this.state.start("GameWon");
+		//this.state.start("Eternity")
 	}
 }

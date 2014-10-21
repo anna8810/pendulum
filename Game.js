@@ -1,15 +1,4 @@
-Pendulum.Game = function() {
-	var speed;
-	var pendulum;
-	var obstacles;
-	var o;
-	var buttonLeft;
-	var buttonRight;
-	var movingLeft = false;
-	var movingRight = false;
-	var level;
-	//obstaclesTotal = null;
-}
+Pendulum.Game = function() {}
 
 Pendulum.Game.prototype = {
 
@@ -19,8 +8,8 @@ Pendulum.Game.prototype = {
 		this.buildWorld();
 		this.buildPath();
 		this.buildPendulum();
-		this.buildObstacleGroup();
 		this.buildPointGroup();
+		this.buildObstacleGroup();
 	},
 
 	buildWorld: function() {
@@ -47,7 +36,7 @@ Pendulum.Game.prototype = {
 		rightSide.input.pointerOver.id = 1;	
 
 		totalP = this.returnTotalPoints();
-		score = this.add.text(this.world.width - 160, 10, "", {fill: "#FFF", font:"23px Segoe"});
+		score = this.add.text(this.world.width - 170, 10, "", {fill: "#FFF", font:"23px Segoe"});
 	},
 
 	activeInput: function() {
@@ -116,7 +105,7 @@ Pendulum.Game.prototype = {
 	obstaclePassed: function() {
 		obstaclePassed++;
 		// Debugging
-		//console.log("obstaclePassed: " + obstaclePassed);
+		//console.log("Game.obstaclePassed");
 
 		// Uglyhack
 		if(obstaclePassed == obstaclesTotal)
@@ -162,8 +151,13 @@ Pendulum.Game.prototype = {
 
 	update: function() {
 		// Tried to set the text earlier but it did not work, font not loaded yet?
-		score.setText("Score: " + nrOfPoints + "/" + pointsTotal);
-
+		if(level) {
+			score.setText("Score: " + nrOfPoints + "/" + pointsTotal);
+		}
+		else {
+			score.setText("Score: " + nrOfPoints);
+		}
+		
 		// Move background and obstacles
 		BG.tilePosition.y += this.speed;
 		obstacles.y += this.speed;

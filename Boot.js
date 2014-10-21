@@ -16,7 +16,7 @@ Pendulum.Boot.prototype = {
 			// Debugging
 			//console.log("On desctop");
 		}
-		else { // TODO
+		else { // TODO fixing scaling for different devices
 			// Debugging
 			//console.log("On other device");
 			this.scale.maxWidth = 320;

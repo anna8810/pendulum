@@ -1,11 +1,4 @@
-Pendulum.Level1 = function(game) {
-
-	var speed;
-	obstaclesTotal = 3;
-	var obstaclesPassed;
-	var level;
-
-}
+Pendulum.Level1 = function(game) {}
 
 Pendulum.Level1.prototype = Object.create(Pendulum.Game.prototype);
 //Pendulum.Level1.prototype.constructor = Pendulum.Level1;

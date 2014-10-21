@@ -9,12 +9,19 @@
 		<title> Pendulum </title>
 
 		<script src="libs/phaser.js"></script>
+
 		<script src="Boot.js"></script>
 		<script src="Preloader.js"></script>
+
 		<script src="StartMenu.js"></script>
-		<script src="Game.js"></script>
+		<script src="Levels.js"></script>
+		<script src="Credits.js"></script>
+
 		<script src="GameOver.js"></script>
 		<script src="GameWon.js"></script>
+
+		<script src="Game.js"></script>
+		<script src="Eternity.js"></script>
 
 		<script src="levels/Level1.js"></script>
 		<script src="levels/Level2.js"></script>
@@ -48,10 +55,16 @@
 				// Add states to be called later
 				game.state.add("Boot", Pendulum.Boot);
 				game.state.add("Preloader", Pendulum.Preloader);
+
 				game.state.add("StartMenu", Pendulum.StartMenu);
-				game.state.add("Game", Pendulum.Game);
+				game.state.add("Levels", Pendulum.Levels);
+				game.state.add("Credits", Pendulum.Credits);
+
 				game.state.add("GameOver", Pendulum.GameOver);
 				game.state.add("GameWon", Pendulum.GameWon);
+
+				game.state.add("Game", Pendulum.Game);	
+				game.state.add("Eternity", Pendulum.Eternity);
 
 				game.state.add("Level1", Pendulum.Level1);
 				game.state.add("Level2", Pendulum.Level2);

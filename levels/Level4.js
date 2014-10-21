@@ -39,9 +39,9 @@ Pendulum.Level4.prototype.buildObstacles = function(obstacles) {
 	circle.scale.set(0.8);
 	circle.anchor.setTo(0.5, 0.5);
 	array.push(circle);
-	array.push(obstacles.create(-450, -600, "HrectangleL"));
+	array.push(obstacles.create(-200, -600, "square"));
 	array.push(obstacles.create(150, -600, "Vrectangle"));
-	array.push(obstacles.create(-50, -1000, "HrectangleL"));
+	array.push(obstacles.create(-50, -1000, "square"));
 	array.push(obstacles.create(-250, -1000, "Vrectangle"));
 
 	circle = obstacles.create(0, -1300, "circle");
@@ -59,7 +59,7 @@ Pendulum.Level4.prototype.buildPoints = function(points) {
 	// Debugging
 	//console.log("Level4.buildPoints");
 
-	pointsTotal = 12+6+6+1+5+6;
+	pointsTotal = 6+5+1+6+6;
 	
 	var p;
 

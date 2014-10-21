@@ -148,6 +148,7 @@ Pendulum.Game.prototype = {
 		
 		point.kill();
 		score.setText("Score: " + nrOfPoints + "/" + pointsTotal);
+		//score.bringToTop();
 
 		if(nrOfPoints == pointsTotal)
 		{

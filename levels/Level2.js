@@ -15,7 +15,7 @@ Pendulum.Level2.prototype.buildLevel = function() {
 	//console.log("Level2.buildLevel");
 
 	level = 2;
-	this.speed = 1; 
+	this.speed = 2; 
 
 	// Backgorund as tileSprite to have continuously moving background
 	BG = this.add.tileSprite(0, 0, 1024, 600, "Level2BG");	

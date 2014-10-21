@@ -1,7 +1,11 @@
 /* ************************************************
-** I am really not happy with this code at all.  **
+** I am really not happy with this code at all.	 **
 ** It is ugly and doesnt even work all the time. **
 ** But I guess you get the concept...            **
+**												 **
+** Just found a bug -> restart not working.      **
+** But since its 23:50 i wont fix it.            **
+** I need my beauty sleep ;)                     **
 ************************************************ */
 
 Pendulum.Eternity = function(game) {}
